@@ -2,7 +2,7 @@
 import os
 import pickle
 from abc import ABC, abstractmethod
-
+import random
 """In Pytorch you would usually define the `forward` function which performs all the interesting computations"""
 
 
@@ -54,7 +54,7 @@ class Dummy(Network):
         #                                                                      #
         ########################################################################
 
-        pass
+        x = random.randrange(60,100)
 
         ########################################################################
         #                           END OF YOUR CODE                           #
