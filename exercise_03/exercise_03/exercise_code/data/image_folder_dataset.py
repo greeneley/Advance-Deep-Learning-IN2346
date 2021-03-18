@@ -65,7 +65,6 @@ class ImageFolderDataset(Dataset):
                     path = os.path.join(root, fname)
                     images.append(path)
                     labels.append(label)
-
         assert len(images) == len(labels)
         return images, labels
 
@@ -89,7 +88,7 @@ class ImageFolderDataset(Dataset):
         return np.asarray(Image.open(image_path), dtype=float)
 
     def __getitem__(self, index):
-        data_dict = None
+        data_dict = {"image": None, "label": None}
         ########################################################################
         # TODO:                                                                #
         # create a dict of the data at the given index in your dataset         #
@@ -100,19 +99,23 @@ class ImageFolderDataset(Dataset):
         #   - If applicable, make sure to apply self.transform to the image:   #
         #     image_transformed = self.transform(image)                        #
         ########################################################################
-
-        # pass
-        # image_index = []
-        # label_index = []
-        # for labels, cls in enumerate(sorted(self.classes)):
-        #     image_path  = os.path.join(root, cls, index + ".png")
-        #     image = load_image_as_numpy(image_path)
-        #     image_transformed = self.transform(image)
-        #     image_index.append(image_transformed)
-        #     label_index.append(labels)
-        # data_dict["image"] = image_index
-        # data_dict["label"] = label_index
+        
+        count = 0
+        for _image, _label in zip(self.images, self.labels):
+            if count != index:
+                count += 1
+                continue
+            else:
+                image = np.asarray(Image.open(_image), dtype=float)
+                image_transformed = self.transform(image)
+                # image_transformed = self.transform(image)
+                data_dict["image"] = image_transformed
+                data_dict["label"] = _label
+                break
+        # for images, labels in 
         ########################################################################
         #                           END OF YOUR CODE                           #
         ########################################################################
         return data_dict
+
+
