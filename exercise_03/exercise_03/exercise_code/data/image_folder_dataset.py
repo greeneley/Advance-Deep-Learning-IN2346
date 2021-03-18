@@ -70,13 +70,13 @@ class ImageFolderDataset(Dataset):
         return images, labels
 
     def __len__(self):
-        length = None
+        # length = None
         ########################################################################
         # TODO:                                                                #
         # Return the length of the dataset (number of images)                  #
         ########################################################################
 
-        pass
+        length = len(self.images)
 
         ########################################################################
         #                           END OF YOUR CODE                           #
@@ -101,8 +101,17 @@ class ImageFolderDataset(Dataset):
         #     image_transformed = self.transform(image)                        #
         ########################################################################
 
-        pass
-
+        # pass
+        # image_index = []
+        # label_index = []
+        # for labels, cls in enumerate(sorted(self.classes)):
+        #     image_path  = os.path.join(root, cls, index + ".png")
+        #     image = load_image_as_numpy(image_path)
+        #     image_transformed = self.transform(image)
+        #     image_index.append(image_transformed)
+        #     label_index.append(labels)
+        # data_dict["image"] = image_index
+        # data_dict["label"] = label_index
         ########################################################################
         #                           END OF YOUR CODE                           #
         ########################################################################
